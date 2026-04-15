@@ -1,0 +1,5 @@
+<Solution>
+  <Folder Name="/src/">
+    <Project Path="src/Railway.Toolkit.Demo.Api/Railway.Toolkit.Demo.Api.csproj" />
+  </Folder>
+</Solution>
