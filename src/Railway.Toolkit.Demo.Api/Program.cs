@@ -1,4 +1,5 @@
 using Railway.Toolkit.Demo.Api.Features.Users.Login;
+using Railway.Toolkit.Demo.Api.Features.Users.Lookup;
 using Railway.Toolkit.Demo.Api.Features.Users.Register;
 using Railway.Toolkit.Demo.Api.Infrastructure;
 
@@ -8,6 +9,7 @@ builder.Services.AddControllers();
 builder.Services.AddSingleton<IUserStore, UserStore>();
 builder.Services.AddScoped<RegisterHandler>();
 builder.Services.AddScoped<LoginHandler>();
+builder.Services.AddScoped<LookupHandler>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
