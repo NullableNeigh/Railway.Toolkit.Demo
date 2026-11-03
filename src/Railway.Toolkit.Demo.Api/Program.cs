@@ -1,20 +1,24 @@
-using Railway.Toolkit.Demo.Api.Features.Users.BulkImport;
-using Railway.Toolkit.Demo.Api.Features.Users.Login;
-using Railway.Toolkit.Demo.Api.Features.Users.Lookup;
-using Railway.Toolkit.Demo.Api.Features.Users.PasswordReset;
-using Railway.Toolkit.Demo.Api.Features.Users.Register;
+using System.Text.Json.Serialization;
+using Railway.Toolkit.Demo.Api.Features.Tasks;
+using Railway.Toolkit.Demo.Api.Features.Tasks.BatchCreate;
+using Railway.Toolkit.Demo.Api.Features.Tasks.Complete;
+using Railway.Toolkit.Demo.Api.Features.Tasks.Create;
+using Railway.Toolkit.Demo.Api.Features.Tasks.Edit;
+using Railway.Toolkit.Demo.Api.Features.Tasks.Lookup;
 using Railway.Toolkit.Demo.Api.Infrastructure;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Services.AddControllers();
-builder.Services.AddSingleton<IUserStore, UserStore>();
-builder.Services.AddScoped<RegisterHandler>();
-builder.Services.AddScoped<LoginHandler>();
-builder.Services.AddScoped<LookupHandler>();
-builder.Services.AddSingleton<IPasswordResetTokenStore, PasswordResetTokenStore>();
-builder.Services.AddScoped<PasswordResetHandler>();
-builder.Services.AddScoped<BulkImportHandler>();
+builder.Services.AddControllers().AddJsonOptions(options =>
+    options.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter(allowIntegerValues: false)));
+builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
+builder.Services.AddSingleton<ITaskStore, TaskStore>();
+builder.Services.AddScoped<TaskValidation>();
+builder.Services.AddScoped<CreateTaskHandler>();
+builder.Services.AddScoped<LookupTaskHandler>();
+builder.Services.AddScoped<EditTaskHandler>();
+builder.Services.AddScoped<CompleteTaskHandler>();
+builder.Services.AddScoped<BatchCreateTaskHandler>();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen(options =>
 {
@@ -22,17 +26,16 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "Railway.Toolkit.Demo",
         Version = "v1",
-        Description = "A demonstration API showcasing Railway-Oriented Programming with Railway.Toolkit."
+        Description = "An in-memory task API showcasing Railway-Oriented Programming with Railway.Toolkit."
     });
 });
 
 WebApplication app = builder.Build();
-
 app.UseSwagger();
 app.UseSwaggerUI();
-
 app.UseHttpsRedirection();
-app.UseAuthorization();
 app.MapControllers();
-
 app.Run();
+
+// Expose the entry point to the HTTP integration test host.
+public partial class Program;

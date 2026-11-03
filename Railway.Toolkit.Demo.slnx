@@ -2,4 +2,7 @@
   <Folder Name="/src/">
     <Project Path="src/Railway.Toolkit.Demo.Api/Railway.Toolkit.Demo.Api.csproj" />
   </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/Railway.Toolkit.Demo.Api.Tests/Railway.Toolkit.Demo.Api.Tests.csproj" />
+  </Folder>
 </Solution>
