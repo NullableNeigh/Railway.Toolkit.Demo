@@ -1,3 +1,4 @@
+using Railway.Toolkit.Demo.Api.Features.Examples.Collections;
 using System.Text.Json.Serialization;
 using Railway.Toolkit.Demo.Api.Features.Tasks;
 using Railway.Toolkit.Demo.Api.Features.Tasks.BatchCreate;
@@ -14,6 +15,7 @@ builder.Services.AddControllers().AddJsonOptions(options =>
 builder.Services.AddSingleton<TimeProvider>(TimeProvider.System);
 builder.Services.AddSingleton<ITaskStore, TaskStore>();
 builder.Services.AddScoped<TaskValidation>();
+builder.Services.AddScoped<CollectionExamplesHandler>();
 builder.Services.AddScoped<CreateTaskHandler>();
 builder.Services.AddScoped<LookupTaskHandler>();
 builder.Services.AddScoped<EditTaskHandler>();
