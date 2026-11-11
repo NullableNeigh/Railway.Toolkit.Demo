@@ -1,3 +1,4 @@
+using Railway.Toolkit.Demo.Api.Features.Examples.Branching;
 using Railway.Toolkit.Demo.Api.Features.Examples.Collections;
 using Railway.Toolkit.Demo.Api.Features.Examples.Exceptions;
 using Railway.Toolkit.Demo.Api.Features.Examples.Recovery;
@@ -20,6 +21,7 @@ builder.Services.AddScoped<TaskValidation>();
 builder.Services.AddScoped<CollectionExamplesHandler>();
 builder.Services.AddScoped<Base64DecodeHandler>();
 builder.Services.AddScoped<RecoveryExamplesHandler>();
+builder.Services.AddScoped<DeliveryQuoteHandler>();
 builder.Services.AddScoped<CreateTaskHandler>();
 builder.Services.AddScoped<LookupTaskHandler>();
 builder.Services.AddScoped<EditTaskHandler>();

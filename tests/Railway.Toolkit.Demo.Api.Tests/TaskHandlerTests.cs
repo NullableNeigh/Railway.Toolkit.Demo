@@ -149,6 +149,15 @@ public sealed class TaskHandlerTests
         Assert.Equal("Task.AlreadyCompleted", Assert.Single(results.OfType<Result<TodoTask>.Fail>()).Error.Code);
     }
 
+    [Fact]
+    public void Undated_task_still_collects_other_field_errors()
+    {
+        Error error = Fail(Create.Handle(new(" ", new string('x', 1001))));
+        Assert.Equal("Validation.Failed", error.Code);
+        Assert.Equal(new[] { "Description", "Title" }, error.Details!.Keys.Order());
+        Assert.Empty(_store.GetAll());
+    }
+
     private static T Ok<T>(Result<T> result) => Assert.IsType<Result<T>.Ok>(result).Value;
     private static Error Fail<T>(Result<T> result) => Assert.IsType<Result<T>.Fail>(result).Error;
 
