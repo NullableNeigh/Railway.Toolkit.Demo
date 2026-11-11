@@ -1,5 +1,6 @@
 using Railway.Toolkit.Demo.Api.Features.Examples.Collections;
 using Railway.Toolkit.Demo.Api.Features.Examples.Exceptions;
+using Railway.Toolkit.Demo.Api.Features.Examples.Recovery;
 using System.Text.Json.Serialization;
 using Railway.Toolkit.Demo.Api.Features.Tasks;
 using Railway.Toolkit.Demo.Api.Features.Tasks.BatchCreate;
@@ -18,6 +19,7 @@ builder.Services.AddSingleton<ITaskStore, TaskStore>();
 builder.Services.AddScoped<TaskValidation>();
 builder.Services.AddScoped<CollectionExamplesHandler>();
 builder.Services.AddScoped<Base64DecodeHandler>();
+builder.Services.AddScoped<RecoveryExamplesHandler>();
 builder.Services.AddScoped<CreateTaskHandler>();
 builder.Services.AddScoped<LookupTaskHandler>();
 builder.Services.AddScoped<EditTaskHandler>();
